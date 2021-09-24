@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>CompuMundoHiperMegaRed</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.13/lottie.min.js"
+        integrity="sha512-srGxQe2w7s50+5/nNgEVKYtBm15zRylJwdjxYnGEZr3mmHFJKFjA/ImA2OKizVzoIDX8XISMHDI1+az9pnumbQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=VT323&display=swap" rel="stylesheet">
+
+    <style>
+        h1, h2, h3,h4, h5, h6, .title-mono {
+            font-family: 'VT323', monospace;
+        }
+        p {
+            font-family: 'Bree Serif', serif;
+        }
+        body {
+            overflow-x: hidden;
+        }
+        body > * {
+            width: auto;
+        }
+        #canvas {
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            padding: 0;
+            margin: 0;
+        }
+        /* #compumundo-animation {
+            width: 100%;
+            height: auto;
+        } */
+        .main .container {
+            height: 100vh;
+            min-height: 400px;
+        }
+        .main .container .columns {
+            height: 100%;
+        }
+        .main .welcome {
+            width: 100%;
+        }
+        #nosotros {
+            min-height: 60vh;
+        }
+        #nosotros .box {
+            height: 100%;
+        }
+        #piolin {
+            max-height: 200px;
+            height: 100%;
+            width: auto;
+        }
+
+        @media only screen and (max-width:768px) {
+            #compumundo-animation {
+                max-height: 305px;
+                height: 100%;
+            }
+
+            body, html {
+                font-size: 0.95em;
+            }
+
+            .main .columns {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+            };
+        }
+    </style>
+</head>
+<body class="has-text-white has-background-black">
+    <canvas id="canvas" ></canvas>
+    <section class="main px-2 py-4">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-12-mobile is-flex is-7-tablet is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+                    <h3 class="welcome title is-3 has-text-white m-1">
+                        Le damos la bienvenida a
+                    </h3>
+                    <h1 hidden>CompuMundoHiperMegaRed</h1>
+                    <div class="column is-8">
+                        <div id="compumundo-animation"></div>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-5-tablet is-flex is-flex-direction-column is-justify-content-center">
+                    <div class="mx-2">
+                        <div class="mb-4">
+                            <p class="title is-2 has-text-white mb-2">Bienvenido a la internet,<br>señor cliente.</p>
+                            <p class="title is-3 has-text-white mb-2">¿En qué podemos servirle?</p>
+                        </div>
+                        <div>
+                            <a class="button is-medium is-light" href="https://discord.gg/hhsv57KaB6" target="_blank">
+                                <span class="icon">
+                                    <i class="fab fa-discord" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    Ir al server de Discord
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </h1>
+        </div>
+    </section>
+    <section id="nosotros" class="px-2 py-6">
+        <div class="container">
+            <h2 class="title is-3 has-text-white">¿Quienes somos?</h1>
+            <div class="columns is-flex-wrap-wrap">
+                <div class="column is-12-mobile is-4-tablet">
+                    <div class="box has-text-white has-background-dark">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img src="/assets/img/carecoin.png" alt="Logo de CaReCoiN" class="is-rounded">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong class="has-text-light title-mono is-size-4">CaReCoiN</strong>
+                                        <br>
+                                        El dizque streamer al que nada le male sal.
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left is-flex-direction-column is-align-items-flex-start">
+                                        <a class="has-text-link-light" href="https://www.twitch.tv/carecoin" target="_blank">
+                                            <span class="icon is-small">
+                                                <i class="fab fa-twitch" aria-hidden="true"></i>
+                                            </span>
+                                            Twitch
+                                        </a>
+                                        <a class="has-text-link-light" href="https://carecoin.cl" target="_blank">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-globe"></i>
+                                            </span>
+                                            Blog
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-4-tablet">
+                    <div class="box has-text-white has-background-dark">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img src="/assets/img/tldv.png" alt="Logo de TeLoDoyVuelta" class="is-rounded">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong class="has-text-light title-mono is-size-4">TeLoDoyVuelta</strong>
+                                        <br>
+                                        Puro hardware original <strong class="has-text-white">compadre</strong>. ™
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <a class="has-text-link-light" href="https://www.twitch.tv/telodoyvuelta">
+                                            <span class="icon is-small">
+                                                <i class="fab fa-twitch" aria-hidden="true"></i>
+                                            </span>
+                                            Twitch
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-4-tablet">
+                    <div class="box has-text-white has-background-dark">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img src="/assets/img/chocochips.jpg" alt="Logo de NicoChocoChips" class="is-rounded">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong class="has-text-light title-mono is-size-4">NicoChocoChips</strong>
+                                        <br>
+                                        Tuve un lunar que parecía un chip de chocolate.
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile" >
+                                    <div class="level-left is-flex-direction-column is-align-items-flex-start">
+                                        <a class="has-text-link-light" href="https://www.twitch.tv/nicochocochips" target="_blank">
+                                            <span class="icon is-small">
+                                                <i class="fab fa-twitch" aria-hidden="true"></i>
+                                            </span>
+                                            Twitch
+                                        </a>
+                                        <a class="has-text-link-light" href="https://chocochipslab.com" target="_blank">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-globe"></i>
+                                            </span>
+                                            Blog
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-4-tablet">
+                    <div class="box has-text-white has-background-dark">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img src="/assets/img/idkzx.png" alt="Logo de TeLoDoyVuelta" class="is-rounded">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong class="has-text-light title-mono is-size-4">Idkzx</strong>
+                                        <br>
+                                        Have you ever seen the gato.
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <a class="has-text-link-light" href="https://www.twitch.tv/idkzx_">
+                                            <span class="icon is-small">
+                                                <i class="fab fa-twitch" aria-hidden="true"></i>
+                                            </span>
+                                            Twitch
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-4-tablet">
+                    <div class="box has-text-white has-background-dark">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img src="/assets/img/dtv69.png" alt="Logo de dtv69" class="is-rounded">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong class="has-text-light title-mono is-size-4">dtv69</strong>
+                                        <br>
+                                        Radiocontrolador piruja, pero buena persona.
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <a class="has-text-link-light" href="https://www.twitch.tv/matias_ayala_dtv69">
+                                            <span class="icon is-small">
+                                                <i class="fab fa-twitch" aria-hidden="true"></i>
+                                            </span>
+                                            Twitch
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footers px-2 py-6">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+                    <p class="has-text-centered">
+                        Algunos derechos reservados. 
+                        <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/" target="_blank">
+                            Attribution-NonCommercial-ShareAlike
+                        </a>
+                        .
+                    </p>
+                    <p class="has-text-centered">
+                        <a href="https://github.com/nicolasmontenegro/compumundo-web" target="_blank">
+                            Repo en
+                            <span class="icon is-small">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </span>
+                            Github
+                        </a>
+                    </p>
+                    <img src="" id="piolin" class="m-3" onclick="speed = speed * 1.5">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Logo animation -->
+    <script>
+        var lottiePlayer = lottie.loadAnimation({
+            container: document.querySelector('#compumundo-animation'), // the dom element that will contain the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: '/assets/lottie/compumundo.json',
+        });
+
+        const increaseSpeed = () => {
+            if (speed < 5) {
+                speed = speed * 1.5;
+            }
+        }
+        
+        window.addEventListener('resize', () => {
+            lottiePlayer.resize();
+        })
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+            const d = new Date();
+            document.querySelector("#piolin").src = `assets/piolin/d${d.getDay()}.jpg`;
+            lottiePlayer.play();
+        });
+    </script>
+    <script src="/js/stars.js"></script>
+    
+</body>
+</html>
