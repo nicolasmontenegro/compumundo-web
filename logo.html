@@ -45,6 +45,14 @@
         * {
             overflow: hidden !important;
         }
+        
+        #compumundo-animation {
+            display: flex;
+        }
+
+        #compumundo-animation svg {
+            height: auto !important;
+        }
 
         .text-field {
             flex: 1 0 auto;
@@ -91,7 +99,14 @@
                 document.querySelector(".text-field").remove();
         }
 
-        
+        const handleFullscreen = (e) => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+
         window.addEventListener('resize', () => {
             lottiePlayer.resize();
         })
@@ -99,6 +114,9 @@
         window.addEventListener("DOMContentLoaded", (event) => {
             lottiePlayer.play();
             textField();
+            document
+                .querySelector('body')
+                .addEventListener("click", handleFullscreen, false);
         });
     </script>
     <script src="/js/stars.js"></script>
