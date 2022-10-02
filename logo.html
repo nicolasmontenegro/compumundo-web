@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>CompuMundoHiperMegaRed</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.13/lottie.min.js"
+        integrity="sha512-srGxQe2w7s50+5/nNgEVKYtBm15zRylJwdjxYnGEZr3mmHFJKFjA/ImA2OKizVzoIDX8XISMHDI1+az9pnumbQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=VT323&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            overflow-x: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #canvas {
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .main {
+            max-width: 100vw;
+            max-height: 100vh;
+            padding: 6vh 6vw;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        * {
+            overflow: hidden !important;
+        }
+
+        .text-field {
+            flex: 1 0 auto;
+            margin-top: 2vh;
+        }
+
+        .text-field p {
+            font-family: 'VT323', monospace;
+            font-size: 10vh;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="has-text-white has-background-black">
+    <canvas id="canvas" ></canvas>
+    <section class="main">
+        <div id="compumundo-animation"></div>
+        <div class="text-field">
+            <p></p>
+        </div>
+    </section>
+    <!-- Logo animation -->
+    <script>
+        lottie.setQuality('low');
+        const lottiePlayer = lottie.loadAnimation({
+            container: document.querySelector('#compumundo-animation'), // the dom element that will contain the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: '/assets/lottie/compumundo.json',
+            rendererSettings: {
+                progressiveLoad: false
+            }
+        });
+
+        const textField = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const text = urlParams.get('text');
+            if (urlParams.get('text'))
+                document.querySelector(".text-field p").innerHTML = urlParams.get('text');
+            else
+                document.querySelector(".text-field").remove();
+        }
+
+        
+        window.addEventListener('resize', () => {
+            lottiePlayer.resize();
+        })
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+            lottiePlayer.play();
+            textField();
+        });
+    </script>
+    <script src="/js/stars.js"></script>
+    
+</body>
+</html>
