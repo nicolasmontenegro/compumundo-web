@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=VT323&display=swap" rel="stylesheet">
 
+
     <style>
         h1, h2, h3,h4, h5, h6, .title-mono {
             font-family: 'VT323', monospace;
@@ -38,10 +39,6 @@
             padding: 0;
             margin: 0;
         }
-        /* #compumundo-animation {
-            width: 100%;
-            height: auto;
-        } */
         .main .container {
             height: 100vh;
             min-height: 400px;
@@ -81,8 +78,195 @@
             };
         }
     </style>
+
+    <script>
+        const lottieHandle = () => {
+            lottie.setQuality('low');
+            var lottiePlayer = lottie.loadAnimation({
+                container: document.querySelector('#compumundo-animation'), // the dom element that will contain the animation
+                renderer: 'svg',
+                loop: true,
+                autoplay: false,
+                path: '/assets/lottie/compumundo.json',
+                rendererSettings: {
+                    progressiveLoad: false
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                lottiePlayer.resize();
+            })
+            
+            lottiePlayer.play();
+
+        }
+
+        const piolinHandle = () => {
+            const d = new Date();
+            document.querySelector("#piolin").src = `/assets/piolin/d${((d.getDay() + 6) % 7) + 1}.jpg`;
+            window.omaray = document.querySelector('#omaray');
+            window.omaray.preservesPitch = false;
+            window.omaraySpeed = 1.0;
+
+            window.increaseSpeed = () => {
+                if (speed < 5) {
+                    speed = speed * 1.5;
+                }
+
+
+                window.omaray.pause()
+                window.omaray.currentTime = 0
+                if(!(window.omaraySpeed === 1.0)) {
+                    window.omaray.playbackRate = window.omaraySpeed;
+                }
+                window.omaray.play();
+
+                window.omaraySpeed = window.omaraySpeed * 1.1;
+            }
+        }
+
+        const templateHandle = () => {
+            const templateItem = document.querySelector('#vicepresidente-item');
+            const templateLink = document.querySelector('#vicepresidente-link');
+            const container = document.querySelector('#vicepresidentes');
+
+
+            vicepresidentesList.forEach(vice => {
+                const templateItemClone = templateItem.content.cloneNode(true);
+                templateItemClone.querySelector('.vice-img').src = `/assets/img/${vice.foto}`;
+                templateItemClone.querySelector('.vice-img').alt = `Logo de ${vice.nombre}`;
+                templateItemClone.querySelector('.vice-nombre').innerHTML = vice.nombre;
+                templateItemClone.querySelector('.vice-frase').innerHTML = vice.frase;
+                vice.redes.forEach(red => {
+                    const templateLinkClone = templateLink.content.cloneNode(true);
+
+                    templateLinkClone.querySelector('a').href = red.url;
+                    templateLinkClone.querySelector('.icon > i').classList.add(...red.icono);
+                    templateLinkClone.querySelector('.vice-link-label').innerHTML = red.etiqueta;
+
+                    templateItemClone.querySelector('.vice-links').appendChild(templateLinkClone);
+                })
+
+                container.appendChild(templateItemClone);
+            })
+        }
+
+        const vicepresidentesList = [
+            {
+                id: 'carecoin',
+                foto: 'carecoin.png',
+                nombre: 'CaReCoiN',
+                frase: 'El dizque streamer al que nada le male sal.',
+                redes: [
+                    {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/carecoin', etiqueta: 'Twitch'},
+                    {icono: ['fas', 'fa-globe'], url: 'https://carecoin.cl', etiqueta: 'Blog'}
+                ]
+            },
+            {
+                id: 'tldv',
+                foto: 'tldv.png',
+                nombre: 'TeLoDoyVuelta',
+                frase: 'Puro hardware original <strong class="has-text-white">compadre</strong>™.',
+                redes: [
+                    {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/telodoyvuelta', etiqueta: 'Twitch'}
+                ]
+            },
+            {
+                id: 'idkzx',
+                foto: 'idkzx.png',
+                nombre: 'Idkzx',
+                frase: 'Have you ever seen the gato.',
+                redes: [
+                    {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/idkzx_', etiqueta: 'Twitch'},
+                    {icono: ['fas', 'fa-globe'], url: 'http://www.tebi.moe/', etiqueta: 'Blog'}
+                ]
+            },
+            {
+                id: 'gatito28_',
+                foto: 'gatito28_.png',
+                nombre: 'ガティート28 (aka Gatito28)',
+                frase: 'It\'s raining cats! Hallelujah! 🐱',
+                redes: [
+                    {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/gatito28_', etiqueta: 'Twitch'},
+                ]
+            },
+            {
+                id: 'nicochocochips',
+                foto: 'nicochocochips.jpg',
+                nombre: 'NicoChocoChips',
+                frase: 'Tuve un lunar que parecía un chip de chocolate.',
+                redes: [
+                    {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/nicochocochips', etiqueta: 'Twitch'},
+                    {icono: ['fas', 'fa-globe'], url: 'https://chocochipslab.com', etiqueta: 'Blog'}
+                ]
+            },
+            {
+                id: 'dtv69',
+                foto: 'dtv69.png',
+                nombre: 'MatiDTV',
+                frase: 'Radiocontrolador piruja, pero buena persona.',
+                redes: [
+                    {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/dtv69chn', etiqueta: 'Twitch'}
+                ]
+            },
+            {
+                id: 'giro_sintornillos',
+                foto: 'giro_sintornillos.png',
+                nombre: 'GiRo SiNToRNiLLoS™',
+                frase: 'Desde pequeño jugué en los videos, y ahora tengo una Sega Astro City en casa.',
+                redes: [
+                    {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/giro_sintornillos', etiqueta: 'Twitch'},
+                    {icono: ['fas', 'fa-link'], url: 'https://linktr.ee/girosintornillos', etiqueta: 'Linktr.ee'}
+                ]
+            },
+        ];
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            lottieHandle();
+            templateHandle();
+            piolinHandle();
+        });
+    </script>
+    
 </head>
 <body class="has-text-white has-background-black">
+
+    <template id="vicepresidente-link">
+        
+        
+        <a class="has-text-link-light" href="" target="_blank">
+            <span class="icon is-small">
+                <i class="" aria-hidden="true"></i>
+            </span>
+            <span class="vice-link-label"></span>
+        </a>
+    </template>
+
+    <template id="vicepresidente-item">
+        <div class="column is-12-mobile is-4-tablet">
+            <div class="box has-text-white has-background-dark">
+                <article class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img class="is-rounded vice-img" src="" alt="Logo de Idkzx">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong class="has-text-light title-mono is-size-4 vice-nombre"></strong>
+                                <br>
+                                <span class="vice-frase"></span>
+                            </p>
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-left is-flex-direction-column is-align-items-flex-start vice-links"></div>
+                        </nav>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </template>
     <canvas id="canvas" ></canvas>
     <section class="main px-2 py-4">
         <div class="container">
@@ -120,175 +304,7 @@
     <section id="nosotros" class="px-2 py-6">
         <div class="container">
             <h2 class="title is-3 has-text-white">¿Quienes somos?</h1>
-            <div class="columns is-flex-wrap-wrap">
-                <div class="column is-12-mobile is-4-tablet">
-                    <div class="box has-text-white has-background-dark">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-64x64">
-                                    <img src="/assets/img/carecoin.png" alt="Logo de CaReCoiN" class="is-rounded">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong class="has-text-light title-mono is-size-4">CaReCoiN</strong>
-                                        <br>
-                                        El dizque streamer al que nada le male sal.
-                                    </p>
-                                </div>
-                                <nav class="level is-mobile">
-                                    <div class="level-left is-flex-direction-column is-align-items-flex-start">
-                                        <a class="has-text-link-light" href="https://www.twitch.tv/carecoin" target="_blank">
-                                            <span class="icon is-small">
-                                                <i class="fab fa-twitch" aria-hidden="true"></i>
-                                            </span>
-                                            Twitch
-                                        </a>
-                                        <a class="has-text-link-light" href="https://carecoin.cl" target="_blank">
-                                            <span class="icon is-small">
-                                                <i class="fas fa-globe"></i>
-                                            </span>
-                                            Blog
-                                        </a>
-                                    </div>
-                                </nav>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="column is-12-mobile is-4-tablet">
-                    <div class="box has-text-white has-background-dark">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-64x64">
-                                    <img src="/assets/img/tldv.png" alt="Logo de TeLoDoyVuelta" class="is-rounded">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong class="has-text-light title-mono is-size-4">TeLoDoyVuelta</strong>
-                                        <br>
-                                        Puro hardware original <strong class="has-text-white">compadre</strong>. ™
-                                    </p>
-                                </div>
-                                <nav class="level is-mobile">
-                                    <div class="level-left">
-                                        <a class="has-text-link-light" href="https://www.twitch.tv/telodoyvuelta">
-                                            <span class="icon is-small">
-                                                <i class="fab fa-twitch" aria-hidden="true"></i>
-                                            </span>
-                                            Twitch
-                                        </a>
-                                    </div>
-                                </nav>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="column is-12-mobile is-4-tablet">
-                    <div class="box has-text-white has-background-dark">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-64x64">
-                                    <img src="/assets/img/chocochips.jpg" alt="Logo de NicoChocoChips" class="is-rounded">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong class="has-text-light title-mono is-size-4">NicoChocoChips</strong>
-                                        <br>
-                                        Tuve un lunar que parecía un chip de chocolate.
-                                    </p>
-                                </div>
-                                <nav class="level is-mobile" >
-                                    <div class="level-left is-flex-direction-column is-align-items-flex-start">
-                                        <a class="has-text-link-light" href="https://www.twitch.tv/nicochocochips" target="_blank">
-                                            <span class="icon is-small">
-                                                <i class="fab fa-twitch" aria-hidden="true"></i>
-                                            </span>
-                                            Twitch
-                                        </a>
-                                        <a class="has-text-link-light" href="https://chocochipslab.com" target="_blank">
-                                            <span class="icon is-small">
-                                                <i class="fas fa-globe"></i>
-                                            </span>
-                                            Blog
-                                        </a>
-                                    </div>
-                                </nav>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="column is-12-mobile is-4-tablet">
-                    <div class="box has-text-white has-background-dark">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-64x64">
-                                    <img src="/assets/img/idkzx.png" alt="Logo de Idkzx" class="is-rounded">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong class="has-text-light title-mono is-size-4">Idkzx</strong>
-                                        <br>
-                                        Have you ever seen the gato.
-                                    </p>
-                                </div>
-                                <nav class="level is-mobile">
-                                    <div class="level-left is-flex-direction-column is-align-items-flex-start">
-                                        <a class="has-text-link-light" href="https://www.twitch.tv/idkzx_" target="_blank">
-                                            <span class="icon is-small">
-                                                <i class="fab fa-twitch" aria-hidden="true"></i>
-                                            </span>
-                                            Twitch
-                                        </a>
-                                        <a class="has-text-link-light" href="http://www.tebi.moe/" target="_blank">
-                                            <span class="icon is-small">
-                                                <i class="fas fa-globe"></i>
-                                            </span>
-                                            Blog
-                                        </a>
-                                    </div>
-                                </nav>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="column is-12-mobile is-4-tablet">
-                    <div class="box has-text-white has-background-dark">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-64x64">
-                                    <img src="/assets/img/dtv69.png" alt="Logo de dtv69" class="is-rounded">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong class="has-text-light title-mono is-size-4">dtv69</strong>
-                                        <br>
-                                        Radiocontrolador piruja, pero buena persona.
-                                    </p>
-                                </div>
-                                <nav class="level is-mobile">
-                                    <div class="level-left">
-                                        <a class="has-text-link-light" href="https://www.twitch.tv/matias_ayala_dtv69">
-                                            <span class="icon is-small">
-                                                <i class="fab fa-twitch" aria-hidden="true"></i>
-                                            </span>
-                                            Twitch
-                                        </a>
-                                    </div>
-                                </nav>
-                            </div>
-                        </article>
-                    </div>
-                </div>
+            <div class="columns is-flex-wrap-wrap" id="vicepresidentes">
             </div>
         </div>
     </section>
@@ -312,42 +328,17 @@
                             Github
                         </a>
                     </p>
-                    <img src="" id="piolin" class="m-3" onclick="speed = speed * 1.5">
+                    <img src="" id="piolin" class="m-3" onclick="increaseSpeed()">
+                    <audio preload="none" id="omaray">
+                        <source data-v-405ae3a4="" src="/assets/sounds/omaray.wav" type="audio/wave">
+                        <source data-v-405ae3a4="" src="/assets/sounds/omaray.mp3" type="audio/mpeg">
+                        <source data-v-405ae3a4="" src="/assets/sounds/omaray.ogg" type="audio/ogg">
+                        ERROR
+                    </audio>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Logo animation -->
-    <script>
-        lottie.setQuality('low');
-        var lottiePlayer = lottie.loadAnimation({
-            container: document.querySelector('#compumundo-animation'), // the dom element that will contain the animation
-            renderer: 'svg',
-            loop: true,
-            autoplay: false,
-            path: '/assets/lottie/compumundo.json',
-            rendererSettings: {
-                progressiveLoad: false
-            }
-        });
-
-        const increaseSpeed = () => {
-            if (speed < 5) {
-                speed = speed * 1.5;
-            }
-        }
-        
-        window.addEventListener('resize', () => {
-            lottiePlayer.resize();
-        })
-
-        window.addEventListener("DOMContentLoaded", (event) => {
-            const d = new Date();
-            document.querySelector("#piolin").src = `assets/piolin/d${d.getDay()}.jpg`;
-            lottiePlayer.play();
-        });
-    </script>
+    </section>    
     <script src="/js/stars.js"></script>
-    
 </body>
 </html>
