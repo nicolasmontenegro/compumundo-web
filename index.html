@@ -113,14 +113,12 @@
                     speed = speed * 1.5;
                 }
 
-
                 window.omaray.pause()
                 window.omaray.currentTime = 0
-                if(!(window.omaraySpeed === 1.0)) {
+                if(!(window.omaraySpeed == 1.0) && window.omaraySpeed <= 5.5) {
                     window.omaray.playbackRate = window.omaraySpeed;
                 }
                 window.omaray.play();
-
                 window.omaraySpeed = window.omaraySpeed * 1.1;
             }
         }
@@ -207,6 +205,16 @@
                 frase: 'Radiocontrolador piruja, pero buena persona.',
                 redes: [
                     {icono: ['fab', 'fa-twitch'], url: 'https://www.twitch.tv/dtv69chn', etiqueta: 'Twitch'}
+                ]
+            },
+            {
+                id: 'pepesalot',
+                foto: 'pepesalot.jpg',
+                nombre: 'José Salot (aka PEPEGR∆PHIX)',
+                frase: 'Ilustrador y diseñador gráfico.',
+                redes: [
+                    {icono: ['fab', 'fa-twitter'], url: 'https://twitter.com/pepe_salot', etiqueta: 'Twitter'},
+                    {icono: ['fab', 'fa-instagram'], url: 'https://www.instagram.com/pepe_salot', etiqueta: 'Instagram'},
                 ]
             },
             {
